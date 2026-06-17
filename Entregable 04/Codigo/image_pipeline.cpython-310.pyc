@@ -1,0 +1,12 @@
+from flask import request, jsonify
+from config import TOKENS
+
+def verificar_token(origen):
+    """
+    Verifica el token enviado en los headers.
+    Retorna un JSON de error si no es válido.
+    """
+    token = request.headers.get("X-API-KEY")
+    if token != TOKENS.get(origen):
+        return jsonify({"error": f"Acceso no autorizado para {origen}."}), 403
+    return None

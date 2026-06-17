@@ -1,0 +1,86 @@
+"""
+config.py — Archivo central de configuración del sistema IoT + IA + Telegram
+
+Contiene las variables globales utilizadas en:
+ - Servidor Flask (HOST, PORT, DEBUG)
+ - Tokens de autenticación (ESP32 / Telegram)
+ - Configuración de red interna
+ - Enlaces y parámetros de comunicación
+
+Última actualización: noviembre 2025
+"""
+
+# ============================================================
+# 🔐 TOKENS DE AUTENTICACIÓN
+# ============================================================
+TOKENS = {
+    # Token compartido entre el ESP32 y el servidor Flask
+    "esp32": "TOKEN_ESP32_ABC123",
+
+    # Token utilizado por el bot de Telegram para comunicarse con el servidor Flask
+    "telegram": "TOKEN_TG_987XYZ"
+}
+
+
+# ============================================================
+# 🌐 CONFIGURACIÓN DE RED DEL SERVIDOR FLASK
+# ============================================================
+
+# Dirección IP local del servidor (LAN segura)
+# ⚠️ No usar "0.0.0.0" si solo se desea acceso interno.
+HOST = "192.168.137.1"
+
+# Puerto por el cual Flask atenderá las peticiones
+PORT = 8080
+
+# Modo de depuración (solo habilitar en pruebas)
+DEBUG = True
+
+
+# ============================================================
+# 📷 CONFIGURACIÓN DE COMUNICACIÓN CON EL ESP32-CAM
+# ============================================================
+
+# URL base del ESP32 dentro de la red local
+# Debe coincidir con la IP que el ESP32 muestra al iniciar (por ejemplo, "192.168.1.50")
+ESP32_URL = "http://192.168.137.245"
+
+# Token de seguridad que el ESP32 validará al recibir comandos desde el servidor
+ESP32_TOKEN = "TOKEN_ESP32_ABC123"
+
+
+# ============================================================
+# 🤖 CONFIGURACIÓN DE TELEGRAM BOT
+# ============================================================
+
+# Token oficial del bot de Telegram (de @BotFather)
+TELEGRAM_BOT_TOKEN = "8524465395:AAG_ROl3x5ccFJeNya2MvGvh4-Q7xkcLwjk"
+
+# ID del grupo o usuario donde se enviarán las alertas (usar chat_id real)
+# Puede obtenerse con herramientas como @userinfobot o desde el webhook.
+TELEGRAM_CHAT_ID = "-5020132171"
+
+
+# ============================================================
+# 🧠 CONFIGURACIÓN DEL MODELO IA
+# ============================================================
+
+# Ruta del modelo entrenado (.h5 o .tflite)
+MODEL_PATH = r"C:\\models_IA\\reconocimiento_g.h5"
+
+# Clases posibles del modelo
+CLASS_NAMES = ["Desconocido", "Firulais", "Mailo", "Michi", "Otros_gatos", "Otros_perros", "Persona"]
+
+
+# ============================================================
+# ⚙️ PARÁMETROS OPCIONALES
+# ============================================================
+
+# Tiempo máximo (en segundos) para esperar respuesta del ESP32
+REQUEST_TIMEOUT = 5
+
+# Intervalo de actualización si se usa long-polling con Telegram
+LONG_POLLING_INTERVAL = 30
+
+# Nivel de verbosidad del log (INFO, DEBUG, WARNING, ERROR)
+LOG_LEVEL = "INFO"
