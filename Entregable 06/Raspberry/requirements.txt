@@ -1,0 +1,7 @@
+pillow
+requests
+loguru
+psutil
+ping3
+RPi.GPIO
+flask
